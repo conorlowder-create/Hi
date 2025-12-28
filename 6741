@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>YouTube Player</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0f0f0f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #player {
+      margin-bottom: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+    }
+
+    button {
+      background: #ff0000;
+      border: none;
+      color: white;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="player"></div>
+
+  <div class="controls">
+    <button onclick="play()">Play</button>
+    <button onclick="pause()">Pause</button>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
+  <script>
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '360',
+        width: '640',
+        videoId: 'VIDEO_ID',
+        playerVars: {
+          modestbranding: 1,
+          rel: 0
+        }
+      });
+    }
+
+    function play() {
+      player.playVideo();
+    }
+
+    function pause() {
+      player.pauseVideo();
+    }
+  </script>
+
+</body>
+</html>
